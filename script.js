@@ -59,6 +59,7 @@ function removeDivs() {
 addEventListener("load", (e) => {
     console.log("page is loaded");
     initializeDivs();
+
     function divHover() {
         const getSquare = document.querySelectorAll(".square");
         getSquare.forEach((square) => {
@@ -98,13 +99,12 @@ addEventListener("load", (e) => {
     randomizeRGB();
     divHover();
 
-
     button.addEventListener("click", () => {
         let answer = +prompt("Enter a number to reform the grid (Maximum value 100)");
         let answerSquared = answer * answer;
         console.log(answer);
-        if (answer > 100) {
-            alert("Please enter a value lower than 100");
+        if (answer > 100 || typeof(answer) !== typeof('')) {
+            alert("Please enter a value lower than or equal to 100.");
         } else if (answer == false || answer === null) {
             alert("Canceled");
         } else {
