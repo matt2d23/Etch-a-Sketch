@@ -55,7 +55,7 @@ body {
     width: 200px;
 }
 
-.gigaText {
+.headerWrapper p {
     color: white;
     font-size: 18px;
 }
@@ -73,6 +73,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     background-color: white;
+    cursor: pointer;
 }
 
 .square {

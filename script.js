@@ -76,22 +76,13 @@ addEventListener("load", (e) => {
             let current = 
                 parseFloat(window.getComputedStyle(square).getPropertyValue("--grid_opacity")
             );
-            square.addEventListener("mouseover", () => {
-                if (getSquare.length >= 4096) {
-                    if (current < 1) {
-                        const opacity = (current + 1).toFixed(1);
-                        square.style.setProperty("--grid_opacity", opacity);
-                        current = parseFloat(opacity);
-                    }
-                } else {
-                    if (current < 1) {
-                        const opacity = (current + 1).toFixed(1);
-                        square.style.setProperty("--grid_opacity", opacity);
-                        current = parseFloat(opacity);
-                    }
+            square.addEventListener("mouseover", (e) => {
+                if (current < 1 && e.buttons === 1) {
+                    const opacity = (current + 1).toFixed(1);
+                    square.style.setProperty("--grid_opacity", opacity);
+                    current = parseFloat(opacity);
                 }
-                
-            });
+            })
         });
     }
 
