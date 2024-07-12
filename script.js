@@ -64,13 +64,23 @@ addEventListener("load", (e) => {
         const getSquare = document.querySelectorAll(".square");
         getSquare.forEach((square) => {
             let current = 
-                parseFloat(window.getComputedStyle(square).getPropertyValue("--grid_opacity"));
+                parseFloat(window.getComputedStyle(square).getPropertyValue("--grid_opacity")
+            );
             square.addEventListener("mouseover", () => {
-                if (current > 0) {
-                    const opacity = (current - 0.2).toFixed(1);
-                    square.style.setProperty("--grid_opacity", opacity);
-                    current = parseFloat(opacity);
+                if (getSquare.length >= 4096) {
+                    if (current > 0) {
+                        const opacity = (current - 1).toFixed(1);
+                        square.style.setProperty("--grid_opacity", opacity);
+                        current = parseFloat(opacity);
+                    }
+                } else {
+                    if (current > 0) {
+                        const opacity = (current - 0.2).toFixed(1);
+                        square.style.setProperty("--grid_opacity", opacity);
+                        current = parseFloat(opacity);
+                    }
                 }
+                
             });
         });
     }
@@ -102,12 +112,11 @@ addEventListener("load", (e) => {
     button.addEventListener("click", () => {
         let answer = +prompt("Enter a number to reform the grid (Maximum value 100)");
         let answerSquared = answer * answer;
-        console.log(answer);
-        if (answer > 100 || typeof(answer) !== typeof('')) {
+        if (answer > 100) {
             alert("Please enter a value lower than or equal to 100.");
         } else if (answer == false || answer === null) {
             alert("Canceled");
-        } else {
+        } else if (answer > 0 && answer <= 100) {
             appendDivs(answerSquared);
             randomizeRGB();
             divHover();
@@ -123,6 +132,8 @@ addEventListener("load", (e) => {
                 }
                 i++;
             }
+        } else {
+            alert("Please enter a number");
         }
     })
 });

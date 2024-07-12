@@ -54,11 +54,13 @@ body {
 }
 
 #container {
+    box-sizing: content-box;
+    border: 3px solid black;
     max-width: var(--square-width);
     height: var(--square-width);
     display: flex;
     flex-wrap: wrap;
-    
+    background-color: white;
 }
 
 .square {
