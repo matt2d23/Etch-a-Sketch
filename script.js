@@ -99,15 +99,15 @@ addEventListener("load", (e) => {
         while (i < container.childNodes.length) {
             if (el === container.firstChild) {
                 el.style.backgroundColor = `rgb(
-                    ${Math.floor(Math.random() * 255)},
-                    ${Math.floor(Math.random() * 255)},
-                    ${Math.floor(Math.random() * 255)})`
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)})`
                 el = el.nextSibling;
             } else {
                 el.style.backgroundColor = `rgb(
-                    ${Math.floor(Math.random() * 255)},
-                    ${Math.floor(Math.random() * 255)},
-                    ${Math.floor(Math.random() * 255)})`
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)})`
                 el = el.nextSibling;
             }
             i++;
