@@ -83,6 +83,13 @@ addEventListener("load", (e) => {
                     current = parseFloat(opacity);
                 }
             })
+            square.addEventListener("mousedown", (e) => {
+                if (current < 1 && e.buttons === 1) {
+                    const opacity = (current + 1).toFixed(1);
+                    square.style.setProperty("--grid_opacity", opacity);
+                    current = parseFloat(opacity);
+                }
+            })
         });
     }
 
