@@ -1,7 +1,6 @@
 'use strict'
 
-const container = document.querySelector("#container");
-const button = document.querySelector(".btn");
+
 
 
 function createDiv(text) {
@@ -57,8 +56,19 @@ function removeDivs() {
 
 
 addEventListener("load", (e) => {
+    const container = document.querySelector("#container");
+    const button = document.querySelector(".btn");
+    const clear = document.querySelector(".clear");
+    const range = document.querySelector(".range");
+    const rangeText = document.querySelector(".gigaText");
+
     console.log("page is loaded");
     initializeDivs();
+
+
+    range.addEventListener("change", (e) => {
+        rangeText.textContent = `Grid Size: ${range.value}x${range.value}`;
+    })
 
     function divHover() {
         const getSquare = document.querySelectorAll(".square");
@@ -75,7 +85,7 @@ addEventListener("load", (e) => {
                     }
                 } else {
                     if (current < 1) {
-                        const opacity = (current + 0.2).toFixed(1);
+                        const opacity = (current + 1).toFixed(1);
                         square.style.setProperty("--grid_opacity", opacity);
                         current = parseFloat(opacity);
                     }
@@ -110,30 +120,42 @@ addEventListener("load", (e) => {
     divHover();
 
     button.addEventListener("click", () => {
-        let answer = +prompt("Enter a number to reform the grid (Maximum value 100)");
+        // let answer = +prompt("Enter a number to reform the grid (Maximum value 100)");
+        let answer = range.value;
         let answerSquared = answer * answer;
-        if (answer > 100) {
-            alert("Please enter a value lower than or equal to 100.");
-        } else if (answer == false || answer === null) {
-            alert("Canceled");
-        } else if (answer > 0 && answer <= 100) {
-            appendDivs(answerSquared);
-            randomizeRGB();
-            divHover();
-            let el = container.firstChild;
-            let i = 0;
-            while (i < container.childNodes.length) {
-                if (el === container.firstChild) {
-                    el.style.width = `calc(720px / ${answer})`
-                    el = el.nextSibling;
-                } else {
-                    el.style.width = `calc(720px / ${answer})`
-                    el = el.nextSibling;
-                }
-                i++;
+
+        appendDivs(answerSquared);
+        randomizeRGB();
+        divHover();
+        let el = container.firstChild;
+        let i = 0;
+        while (i < container.childNodes.length) {
+            if (el === container.firstChild) {
+                el.style.width = `calc(600px / ${answer})`
+                el = el.nextSibling;
+            } else {
+                el.style.width = `calc(600px / ${answer})`
+                el = el.nextSibling;
             }
-        } else {
-            alert("Please enter a number");
+            i++;
         }
     })
+
+    clear.addEventListener("click", () => {
+        let el = container.firstChild;
+        let i = 0;
+        while (i < container.childNodes.length) {
+            if (el === container.firstChild) {
+                el.style.setProperty("--grid_opacity", 0);
+                el = el.nextSibling;
+            } else {
+                el.style.setProperty("--grid_opacity", 0);
+                el = el.nextSibling;
+            }
+            i++;
+        }
+        divHover();
+    });
 });
+
+

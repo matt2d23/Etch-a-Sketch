@@ -11,7 +11,7 @@ html, body, .content {
 
 body {
     background-color: rgb(77,77,77);
-    --square-width: 720px;
+    --square-width: 600px;
 }
 
 .content {
@@ -28,14 +28,19 @@ body {
     color: white;
 }
 
-.btnWrapper {
+.headerWrapper {
     margin: 8px 0 8px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    height: 200px;
+    gap: 10px;
 }
 
-.btn {
+.btnWrapper button {
     width: 100px;
+    height: 25px;
     padding: 2px;
     border: none;
     border-radius: 10px;
@@ -46,11 +51,18 @@ body {
     background-color: red;
 }
 
+.range {
+    width: 200px;
+}
+
+.gigaText {
+    color: white;
+    font-size: 18px;
+}
+
 .outer {
     display: flex;
     justify-content: center;
-    height: 100%;
-    align-items: center;
 }
 
 #container {
@@ -64,9 +76,7 @@ body {
 }
 
 .square {
-    /* fallback background color if randomizeRGB() doesn't work for some reason */
-    background-color: rgb(211,211,211); 
-    width: calc(720px / 16);
+    width: calc(600px / 16);
     --grid_opacity: 0;
     opacity: var(--grid_opacity);
 }

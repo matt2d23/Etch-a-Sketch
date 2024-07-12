@@ -10,8 +10,14 @@
 <body>
     <div class="content">
         <h1>Etch-a-Sketch!</h1>
-        <div class="btnWrapper">
-            <button class="btn">Click Me</button>
+        <div class="headerWrapper">
+            <p class="gigaText">Grid Size: 16x16</p>
+            <input type="range" class="range" min="2" max="100" value="16">
+            <div class="btnWrapper">
+                <button class="btn">Set Size</button>
+                <button class="clear">Clear</button>
+            </div>
+            
         </div>
         <div class="outer">
             <div class="container" id="container"></div>
