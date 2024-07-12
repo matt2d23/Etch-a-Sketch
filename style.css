@@ -67,7 +67,7 @@ body {
     /* fallback background color if randomizeRGB() doesn't work for some reason */
     background-color: rgb(211,211,211); 
     width: calc(720px / 16);
-    --grid_opacity: 1;
+    --grid_opacity: 0;
     opacity: var(--grid_opacity);
 }
 

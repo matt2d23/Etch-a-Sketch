@@ -68,14 +68,14 @@ addEventListener("load", (e) => {
             );
             square.addEventListener("mouseover", () => {
                 if (getSquare.length >= 4096) {
-                    if (current > 0) {
-                        const opacity = (current - 1).toFixed(1);
+                    if (current < 1) {
+                        const opacity = (current + 1).toFixed(1);
                         square.style.setProperty("--grid_opacity", opacity);
                         current = parseFloat(opacity);
                     }
                 } else {
-                    if (current > 0) {
-                        const opacity = (current - 0.2).toFixed(1);
+                    if (current < 1) {
+                        const opacity = (current + 0.2).toFixed(1);
                         square.style.setProperty("--grid_opacity", opacity);
                         current = parseFloat(opacity);
                     }
