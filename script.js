@@ -145,11 +145,17 @@ addEventListener("load", (e) => {
         while (i < container.childNodes.length) {
             if (el === container.firstChild) {
                 el.style.setProperty("--grid_opacity", 0);
-                randomizeRGB();
+                el.style.backgroundColor = `rgb(
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)})`
                 el = el.nextSibling;
             } else {
                 el.style.setProperty("--grid_opacity", 0);
-                randomizeRGB();
+                el.style.backgroundColor = `rgb(
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)})`
                 el = el.nextSibling;
             }
             i++;
