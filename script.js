@@ -24,9 +24,10 @@ function divHover() {
             if (current < 1 && e.buttons === 1) {
                 const opacity = (current + 1).toFixed(1);
                 const rgb = `rgb(
-                ${Math.floor(Math.random() * 256)},
-                ${Math.floor(Math.random() * 256)},
-                ${Math.floor(Math.random() * 256)})`
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)})`;
+
                 square.style.setProperty("background-color", rgb);
                 square.style.setProperty("--grid_opacity", opacity);
                 current = parseFloat(opacity);
@@ -38,7 +39,8 @@ function divHover() {
                 const rgb = `rgb(
                     ${Math.floor(Math.random() * 256)},
                     ${Math.floor(Math.random() * 256)},
-                    ${Math.floor(Math.random() * 256)})`
+                    ${Math.floor(Math.random() * 256)})`;
+                    
                 square.style.setProperty("background-color", rgb);
                 square.style.setProperty("--grid_opacity", opacity);
                 current = parseFloat(opacity);
