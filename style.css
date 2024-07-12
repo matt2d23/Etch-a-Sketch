@@ -39,6 +39,7 @@ body {
 }
 
 .btnWrapper button {
+    margin: 0 10px 0;
     width: 100px;
     height: 25px;
     padding: 2px;
@@ -47,8 +48,24 @@ body {
     cursor: pointer;
 }
 
+@keyframes scales {
+    from {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+    to {
+        transform: scale(1.25);
+        -webkit-transform: scale(1.25);
+    }
+}
+
 .btnWrapper button:hover {
-    background-color: red;
+    animation: scales 0.1s linear forwards;
+    -webkit-animation: scales 0.1s linear forwards;
+}
+
+button.active {
+    background-color: green;
 }
 
 .range {

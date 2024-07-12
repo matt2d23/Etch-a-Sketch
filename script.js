@@ -1,6 +1,87 @@
 'use strict'
 
+const container = document.querySelector("#container");
+const button = document.querySelector(".btn");
+const clear = document.querySelector(".clear");
+const rainbow = document.querySelector(".rainbow");
+const customColor = document.querySelector(".setColor");
+const range = document.querySelector(".range");
+const rangeText = document.querySelector(".gigaText");
+const rainbowClasses = rainbow.classList;
+const customColorClass = customColor.classList;
 
+range.addEventListener("input", (e) => {
+    rangeText.textContent = `Grid Size: ${range.value}x${range.value}`;
+})
+
+function divHover() {
+    const getSquare = document.querySelectorAll(".square");
+    getSquare.forEach((square) => {
+        let current = 
+            parseFloat(window.getComputedStyle(square).getPropertyValue("--grid_opacity")
+        );
+        square.addEventListener("mouseover", (e) => {
+            if (current < 1 && e.buttons === 1) {
+                const opacity = (current + 1).toFixed(1);
+                const rgb = `rgb(
+                ${Math.floor(Math.random() * 256)},
+                ${Math.floor(Math.random() * 256)},
+                ${Math.floor(Math.random() * 256)})`
+                square.style.setProperty("background-color", rgb);
+                square.style.setProperty("--grid_opacity", opacity);
+                current = parseFloat(opacity);
+            }
+        })
+        square.addEventListener("mousedown", (e) => {
+            if (current < 1 && e.buttons === 1) {
+                const opacity = (current + 1).toFixed(1);
+                const rgb = `rgb(
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)})`
+                square.style.setProperty("background-color", rgb);
+                square.style.setProperty("--grid_opacity", opacity);
+                current = parseFloat(opacity);
+            }
+        })
+    });
+}
+
+function randomizeRGB() {
+    let el = container.firstChild;
+    let i = 0;
+    while (i < container.childNodes.length) {
+        if (el === container.firstChild) {
+            el.style.backgroundColor = `rgb(
+                ${Math.floor(Math.random() * 256)},
+                ${Math.floor(Math.random() * 256)},
+                ${Math.floor(Math.random() * 256)})`
+            el = el.nextSibling;
+        } else {
+            el.style.backgroundColor = `rgb(
+                ${Math.floor(Math.random() * 256)},
+                ${Math.floor(Math.random() * 256)},
+                ${Math.floor(Math.random() * 256)})`
+            el = el.nextSibling;
+        }
+        i++;
+    }
+}
+
+function setColor() {
+    let el = container.firstChild;
+    let i = 0;
+    while (i < container.childNodes.length) {
+        if (el === container.firstChild) {
+            el.style.backgroundColor = 'black';
+            el = el.nextSibling;
+        } else {
+            el.style.backgroundColor = 'black';
+            el = el.nextSibling;
+        }
+        i++;
+    }
+}
 
 
 function createDiv(text) {
@@ -56,66 +137,13 @@ function removeDivs() {
 
 
 addEventListener("load", (e) => {
-    const container = document.querySelector("#container");
-    const button = document.querySelector(".btn");
-    const clear = document.querySelector(".clear");
-    const range = document.querySelector(".range");
-    const rangeText = document.querySelector(".gigaText");
+    
 
     console.log("page is loaded");
     initializeDivs();
-
-
-    range.addEventListener("input", (e) => {
-        rangeText.textContent = `Grid Size: ${range.value}x${range.value}`;
-    })
-
-    function divHover() {
-        const getSquare = document.querySelectorAll(".square");
-        getSquare.forEach((square) => {
-            let current = 
-                parseFloat(window.getComputedStyle(square).getPropertyValue("--grid_opacity")
-            );
-            square.addEventListener("mouseover", (e) => {
-                if (current < 1 && e.buttons === 1) {
-                    const opacity = (current + 1).toFixed(1);
-                    square.style.setProperty("--grid_opacity", opacity);
-                    current = parseFloat(opacity);
-                }
-            })
-            square.addEventListener("mousedown", (e) => {
-                if (current < 1 && e.buttons === 1) {
-                    const opacity = (current + 1).toFixed(1);
-                    square.style.setProperty("--grid_opacity", opacity);
-                    current = parseFloat(opacity);
-                }
-            })
-        });
-    }
-
-    function randomizeRGB() {
-        let el = container.firstChild;
-        let i = 0;
-        while (i < container.childNodes.length) {
-            if (el === container.firstChild) {
-                el.style.backgroundColor = `rgb(
-                    ${Math.floor(Math.random() * 256)},
-                    ${Math.floor(Math.random() * 256)},
-                    ${Math.floor(Math.random() * 256)})`
-                el = el.nextSibling;
-            } else {
-                el.style.backgroundColor = `rgb(
-                    ${Math.floor(Math.random() * 256)},
-                    ${Math.floor(Math.random() * 256)},
-                    ${Math.floor(Math.random() * 256)})`
-                el = el.nextSibling;
-            }
-            i++;
-        }
-    }
-
-    randomizeRGB();
+    setColor();
     divHover();
+    customColorClass.toggle("active");
 
     button.addEventListener("click", () => {
         // let answer = +prompt("Enter a number to reform the grid (Maximum value 100)");
@@ -162,6 +190,25 @@ addEventListener("load", (e) => {
         }
         divHover();
     });
+
+    rainbow.addEventListener("click", () => {
+        if (customColorClass.contains("active") && !rainbowClasses.contains("active")) {
+            customColorClass.toggle("active");
+            rainbowClasses.toggle("active");
+        } else if (!rainbowClasses.contains("active")) {
+            rainbowClasses.toggle("active");
+        }
+        
+    })
+
+    customColor.addEventListener("click", () => {
+        if (rainbowClasses.contains("active") && !customColorClass.contains("active")) {
+            rainbowClasses.toggle("active");
+            customColorClass.toggle("active");
+        } else if (!customColorClass.contains("active")){
+            customColorClass.toggle("active");
+        }
+    })
 });
 
 
