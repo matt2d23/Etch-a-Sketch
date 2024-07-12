@@ -21,6 +21,7 @@ function fillDivs(input) {
     return divs;
 }
 
+// When this is called on page load, the pad is created by default at a size of 16x16 squares.
 function initializeDivs() {
     let divs = fillDivs(256);
     const docFragment = document.createDocumentFragment();
@@ -32,6 +33,7 @@ function initializeDivs() {
     container.appendChild(docFragment);
 }
 
+// Same function as above, but for when the user inputs a new size.
 function appendDivs(input) {
     removeDivs();
     let divs = fillDivs(input);
@@ -52,20 +54,48 @@ function removeDivs() {
 
 
 
+
+
 addEventListener("load", (e) => {
     console.log("page is loaded");
     initializeDivs();
     function divHover() {
         const getSquare = document.querySelectorAll(".square");
         getSquare.forEach((square) => {
-            square.addEventListener("mouseover", (e) => {
-                square.classList.add("mouseHover");
-                square.addEventListener("mouseout", (e) => {
-                    square.classList.remove("mouseHover");
-                })
-            })
-        })
+            let current = 
+                parseFloat(window.getComputedStyle(square).getPropertyValue("--grid_opacity"));
+            square.addEventListener("mouseover", () => {
+                if (current > 0) {
+                    const opacity = (current - 0.2).toFixed(1);
+                    square.style.setProperty("--grid_opacity", opacity);
+                    current = parseFloat(opacity);
+                }
+            });
+        });
     }
+
+    function randomizeRGB() {
+        let el = container.firstChild;
+        let i = 0;
+        while (i < container.childNodes.length) {
+            if (el === container.firstChild) {
+                el.style.backgroundColor = `rgb(
+                    ${Math.floor(Math.random() * 255)},
+                    ${Math.floor(Math.random() * 255)},
+                    ${Math.floor(Math.random() * 255)})`
+                el = el.nextSibling;
+            } else {
+                el.style.backgroundColor = `rgb(
+                    ${Math.floor(Math.random() * 255)},
+                    ${Math.floor(Math.random() * 255)},
+                    ${Math.floor(Math.random() * 255)})`
+                el = el.nextSibling;
+            }
+            i++;
+        }
+    }
+
+    randomizeRGB();
     divHover();
 
 
@@ -79,6 +109,7 @@ addEventListener("load", (e) => {
             alert("Canceled");
         } else {
             appendDivs(answerSquared);
+            randomizeRGB();
             divHover();
             let el = container.firstChild;
             let i = 0;

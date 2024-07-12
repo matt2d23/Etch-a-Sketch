@@ -58,12 +58,15 @@ body {
     height: var(--square-width);
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .square {
-    background-color: rgb(211,211,211);
+    /* fallback background color if randomizeRGB() doesn't work for some reason */
+    background-color: rgb(211,211,211); 
     width: calc(720px / 16);
-    /* border: 1px solid red; */
+    --grid_opacity: 1;
+    opacity: var(--grid_opacity);
 }
 
 .mouseHover {
