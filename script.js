@@ -66,7 +66,7 @@ addEventListener("load", (e) => {
     initializeDivs();
 
 
-    range.addEventListener("change", (e) => {
+    range.addEventListener("input", (e) => {
         rangeText.textContent = `Grid Size: ${range.value}x${range.value}`;
     })
 
