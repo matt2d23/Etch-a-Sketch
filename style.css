@@ -85,17 +85,15 @@ button.active {
 #container {
     box-sizing: content-box;
     border: 3px solid black;
-    max-width: var(--square-width);
+    width: var(--square-width);
     height: var(--square-width);
     display: flex;
     flex-wrap: wrap;
-    background-color: white;
     cursor: pointer;
 }
 
 .square {
-    width: calc(600px / 16);
-    --grid_opacity: 0;
+    --grid_opacity: 1;
     opacity: var(--grid_opacity);
 }
 
